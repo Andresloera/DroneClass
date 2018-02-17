@@ -111,7 +111,7 @@ def arm_and_takeoff(TargetAltitude):
 # 
 #   Return Value    : None
 #
-#   Author           : Andrés
+#   Author           : Andres
 #
 #****************************************************************************
 def key(event):
