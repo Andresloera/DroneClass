@@ -111,34 +111,30 @@ def arm_and_takeoff(TargetAltitude):
 # 
 #   Return Value    : None
 #
-#   Author           : You
+#   Author           : Andrés
 #
 #****************************************************************************
 def key(event):
     if event.char == event.keysym: #-- standard keys
         if event.keysym == 'r':drone.mode=VehicleMode("RTL")
-            ### Add your code for what you want to happen when you press r #####
+            #when pressing r we are assigning the value of r to the command return to launch "RTL"
             
     else: #-- non standard keys
         if event.keysym == 'Up':set_velocity_body(drone, 5,0,0)
-            ### add your code for what should happen when pressing the up arrow ###
+            #here we assing the up arrow to make the drone move on the vx axis positively
         elif event.keysym == 'Down':set_velocity_body(drone, -5,0,0)
-            ### add your code for what should happen when pressing the down arrow ###
+            #here we assing the down arrow to make the drone move on the vx axis negatively
         elif event.keysym == 'Left':set_velocity_body(drone, 0,-5,0)
-            ### add your code for what should happen when pressing the Left arrow ###
+            ##here we assing the left arrow to make the drone move on the vy axis positively
         elif event.keysym == 'Right':set_velocity_body(drone, 0,5,0)
-            ### add your code for what should happen when pressing the Right arrow ###
+            #here we assing the right arrow to make the drone move on the vy axis negatively
+            #In here we use doble keys to make the drone move in diagonal
         elif event.keysym == 'Right' and "up":set_velocity_body(drone, 5,5,0)
         elif event.keysym == 'right'and "down":set_velocity_body(drone, 5,-5,0)
         elif event.keysym == 'down' and "right":set_velocity_body(drone, -5,5,0)
         elif event.keysym == 'down' and "left":set_velocity_body(drone, -5,-5,0)
 
-
-#****************************************************************************
-#   MAIN CODE
-#
-#****************************************************************************
-
+#here we make the conection and write the command to make the drone take off.
 drone = connect('127.0.0.1:14551', wait_ready=True)
 # Take off to 10 m altitude
 arm_and_takeoff(10)
@@ -148,6 +144,7 @@ root = tk.Tk()
 print(">> Control the drone with the arrow keys. Press r for RTL mode")
 root.bind_all('<Key>', key)
 root.mainloop()
+#here we make the drone return to launch
 drone.mode = VehicleMode("RTL")
 print("El dron regreso exitosamente")
 drone.close
